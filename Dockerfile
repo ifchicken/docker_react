@@ -8,7 +8,8 @@ WORKDIR '/app'
 # separate the copy section, speed up when rebuild docker image
 COPY ./package.json ./
 RUN npm install
-COPY ./ ./
+# COPY ./ ./
+COPY package*.json ./
 
 # Default command
 CMD ["npm", "run", "build"]
