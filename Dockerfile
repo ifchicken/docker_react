@@ -6,13 +6,12 @@ WORKDIR '/app'
 
 # Install some dependencies
 # separate the copy section, speed up when rebuild docker image
-COPY ./package.json ./
-RUN npm install
-# COPY ./ ./
 COPY package*.json ./
+RUN npm install
+COPY ./ ./
 
 # Default command
-CMD ["npm", "run", "build"]
+RUN npm run build
 
 # second phase
 FROM nginx
