@@ -1,0 +1,34 @@
+# generate an app with Create React App
+npx create-react-app frontend
+
+
+npm run start
+npm run test
+npm run build
+
+docker build -f Dockerfile.dev .
+
+docker run -p 3000:3000 a75309a7154a
+
+# set reference except node_modules
+# in that case, when react file changes, we dont need to rebuild
+docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app 193baf1845f8
+
+docker-compose up
+
+# test
+docker run a75309a7154a npm run test
+docker run -it a75309a7154a npm run test
+
+# open 2nd window, check id and exec, can have interface with test
+docker ps
+docker exec -it a75309a7154a npm run test
+
+# add container in socker-compose file, dont hv interface
+
+
+# create Dockerfile
+# nginx
+
+docker build .
+docker run -p 8080:80 7d67c3990481
